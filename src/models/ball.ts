@@ -1,0 +1,15 @@
+export class Ball {
+  constructor(
+    private ctx: CanvasRenderingContext2D,
+    public x: number,
+    public y: number,
+    public radius: number,
+    public color: string
+  ) {}
+  public draw(): void {
+    this.ctx.fillStyle = this.color;
+    this.ctx.beginPath();
+    this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+    this.ctx.fill();
+  }
+}

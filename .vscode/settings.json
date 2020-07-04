@@ -359,7 +359,8 @@
    * Enable code folding
    * Defaults to true.
    */
-   "editor.folding": true
+  "editor.folding": true,
+  "workbench.editor.enablePreview": false
   /**
    * Selects the folding strategy. 'auto' uses the strategies contributed for the current document, 'indentation' uses the indentation based folding strategy.
    * Defaults to 'auto'.

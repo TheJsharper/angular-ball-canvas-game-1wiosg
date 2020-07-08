@@ -1,6 +1,6 @@
 
 
-import { Brick, Field, Paddle, Ball } from './../models';
+import { Brick, Field, Paddle, Ball } from '../models';
 export class GameService {
   private timeoutRefs: any[] = [];
   private requestAninmationFrameRefs: number[] = [];

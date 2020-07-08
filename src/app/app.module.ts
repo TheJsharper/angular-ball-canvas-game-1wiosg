@@ -1,21 +1,14 @@
 import {
-  NgModule,
+  Injectable, NgModule,
   Renderer2,
-  RendererFactory2,
-  Injectable
+  RendererFactory2
 } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
-
+import { BrowserModule } from "@angular/platform-browser";
+import { AppGameModule } from 'src/game/app.game.module';
 import { AppComponent } from "./app.component";
-import { GameService } from "../game";
 
-export const gameServiceFactory = (
-  canvas: HTMLCanvasElement,
-  ctx: CanvasRenderingContext2D
-) => {
-  return new GameService(canvas, ctx);
-};
+
 
 @Injectable()
 export class RendererHelper {
@@ -29,32 +22,17 @@ export class RendererHelper {
 }
 
 @NgModule({
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule,AppGameModule],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
   providers: [
     RendererHelper,
-    {
-      provide: GameService,
-      useFactory: () => {
-     // const canvas: HTMLCanvasElement =   this.canvas;
-        const canvas: HTMLCanvasElement = document.createElement("canvas");
-        console.log("--->", canvas)
-        const ctx: CanvasRenderingContext2D = canvas.getContext("2d");
-       // console.log("factory",  this.testRenderInjectable.renderer.createElement("canvas"));
-        return new GameService(canvas, ctx);
-      }
-    }
+   
   ]
 })
 export class AppModule {
    private canvas:HTMLCanvasElement;
   constructor(private rendererHelper: RendererHelper) {
-    /*this.canvas = 
-      this.testRenderInjectable.renderer.createElement("canvas");
-    console.log(
-      "constructor--->",
-      this.canvas
-    );*/
+   
   }
 }

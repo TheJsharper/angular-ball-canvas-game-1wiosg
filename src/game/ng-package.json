@@ -1,0 +1,7 @@
+{
+    "$schema": "../../../app-workspace/node_modules/ng-packagr/ng-package.schema.json",
+    "dest":"../../../app-workspace/dist/game-lib",
+    "lib": {
+        "entryFile": "index.ts"
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "extends": "../../../app-workspace/tsconfig.base.json",
+    "compilerOptions": {
+      "outDir": "../../app-workspace/dist",
+      "target": "es2015",
+      "declaration": true,
+      "inlineSources": true,
+      "types": [],
+      "lib": [
+        "dom",
+        "es2018"
+      ]
+    },
+    "angularCompilerOptions": {
+      "skipTemplateCodegen": true,
+      "strictMetadataEmit": true,
+      "enableResourceInlining": true
+    },
+    "exclude": [
+      "game/test.ts",
+      "**/*.spec.ts"
+    ],
+    "files": [
+      "game/index.ts"
+    ],
+    "include": [
+      "game/**/*.ts"
+    ]
+  }
+  

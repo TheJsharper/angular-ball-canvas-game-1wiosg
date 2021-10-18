@@ -40,7 +40,6 @@ export class AppGameViewComponent implements OnInit, OnDestroy{
         private gameService: GameService){}
 
         public ngOnInit(): void {
-            // this.start();
             this.newStart();
           }
         
@@ -95,18 +94,6 @@ export class AppGameViewComponent implements OnInit, OnDestroy{
             const indexAccessing: number = this.calIndex(mouseBrickX, mouseBrckY);
         
             this.drawBricks();
-            /* this.drawText(
-              `${mouseBrickX} , ${mouseBrckY}: ${indexAccessing}`,
-              this.mouseX + 12,
-              this.mouseY + 12,
-              "white"
-            );
-            //this.removeByTouchingTheMouse(indexAccessing);
-            // cheat //hack to test in any position
-            this.ballX = this.mouseX;
-            this.ballY = this.mouseY;
-            this.ballSpeedX = 4;
-            this.ballSpeedY = -4;*/
           }
           private ballMove(): void {
             this.ballX += this.ballSpeedX;
@@ -123,7 +110,6 @@ export class AppGameViewComponent implements OnInit, OnDestroy{
             }
         
             if (this.ballY > this.canvas.height) {
-              //this.ballSpeedY *= -1;
               this.brickReset();
               this.ballX = 225;
               this.ballY = 250;
@@ -185,15 +171,7 @@ export class AppGameViewComponent implements OnInit, OnDestroy{
             this.ctx.arc(centerX, centerY, radius, 0, Math.PI * 2, true);
             this.ctx.fill();
           }
-          private drawText(
-            text: string,
-            x: number,
-            y: number,
-            fillColor: string
-          ): void {
-            this.ctx.fillStyle = fillColor;
-            this.ctx.fillText(text, x, y);
-          }
+         
           private drawBricks(): void {
             for (let eachRow = 0; eachRow < this.BRICK_ROWS; eachRow++) {
               for (let eachCol = 0; eachCol < this.BRICK_COLS; eachCol++) {
@@ -212,10 +190,7 @@ export class AppGameViewComponent implements OnInit, OnDestroy{
           private calIndex(col: number, row: number): number {
             return col + this.BRICK_COLS * row;
           }
-          private removeByTouchingTheMouse(mouseIndex: number): void {
-            if (mouseIndex >= 0 && mouseIndex < this.BRICK_COLS * this.BRICK_ROWS) {
-            }
-          }
+       
           private isBrickAtColRow(col: number, row: number): boolean {
             const test: boolean =
               col >= 0 && col < this.BRICK_COLS && row >= 0 && row < this.BRICK_ROWS;
@@ -232,7 +207,6 @@ export class AppGameViewComponent implements OnInit, OnDestroy{
               ballRow >= 0 &&
               ballRow < this.BRICK_ROWS
             ) {
-              // if (this.bricksGrid[ballIndex]) {
               if (this.isBrickAtColRow(ballCol, ballRow)) {
                 this.bricksGrid[ballIndex] = false;
                 this.brickLeft--;
@@ -242,19 +216,12 @@ export class AppGameViewComponent implements OnInit, OnDestroy{
                 const prevBrickRow: number = Math.floor(prevBallX / this.BRICK_HEIGHT);
                 let isBothFailed: boolean = false;
                 if (prevBrickCol != ballCol) {
-                  //const abjBrickSide: number = this.calIndex(prevBrickCol, ballCol);
-                  //if (!this.bricksGrid[abjBrickSide]) {
                   if (!this.isBrickAtColRow(ballCol, ballRow)) {
                     this.ballSpeedX *= -1;
                     isBothFailed = false;
                   }
                 }
                 if (prevBrickRow != ballRow) {
-                  /*const abjBrickTopBottom: number = this.calIndex(
-                    prevBrickCol,
-                    ballRow
-                  );*/
-                  //if (!this.bricksGrid[abjBrickTopBottom]) {
                   if (!this.isBrickAtColRow(ballCol, prevBrickRow)) {
                     this.ballSpeedY *= -1;
                     isBothFailed = false;
